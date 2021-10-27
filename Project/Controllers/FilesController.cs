@@ -9,12 +9,12 @@ namespace Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FileController : ControllerBase
+    public class FilesController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Hello()
+        [HttpPost]
+        public IActionResult Files(string fileName, IFormFile file)
         {
-            return Ok("hello");
+            return Created("",file);
         }
     }
 }
