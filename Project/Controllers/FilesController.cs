@@ -15,14 +15,26 @@ namespace Project.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private static readonly RegionEndpoint bucketRegion = RegionEndpoint.USEast1;
-        private static IAmazonS3 s3Client;
         [HttpPost]
         public async Task<IActionResult> FilesAsync(string fileName, IFormFile file)
         {
-            s3Client = new AmazonS3Client(bucketRegion);
-            var fileTransferUtility = new TransferUtility(s3Client);
-            await fileTransferUtility.UploadAsync((Stream)file, "projectbucket6info", "vxiDNfQXVR49lNGM5mit0tmkad/kR9Sv1s73MCsL");
+            using (var client = new AmazonS3Client("ASIA5IU4YWEJRNZZDON2", "uQI99fMtnhIib0iVr0U9hmmYzFQQviw4YUUaO0hQ", RegionEndpoint.USEast1))
+            {
+                using (var newMemoryStream = new MemoryStream())
+                {
+                    file.CopyTo(newMemoryStream);
+
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        InputStream = newMemoryStream,
+                        Key = file.FileName,
+                        BucketName = "myaphogeschoolawss3bucket",
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    var fileTransferUtility = new TransferUtility(client);
+                    await fileTransferUtility.UploadAsync(uploadRequest);
+                }
+            }
             return Created("", file);
         }
     }
