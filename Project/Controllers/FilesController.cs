@@ -1,27 +1,26 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Amazon.S3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Amazon;
 using Amazon.S3.Transfer;
 using System.IO;
+using Amazon.S3.Model;
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FilesController : ControllerBase
     {
-        string awsAccessKeyId = "ASIA5IU4YWEJT3RT4XUD";
-        string awsSecretAccessKey = "3WEaFdC8Wsu2sce9Rgh8jSzHdKXJS7WCZwDhe6iE";
-        string awsSessionToken = "FwoGZXIvYXdzEKD//////////wEaDJXm00rBFQBogAntVSLMAR9zU+0V9d+oCCDnaU5Q6Fs9HtkRDfCuHfbFzZBenC1Ocskm8sGT/RB0I1rmKFlenOmijdy1YSyEJtaYmbq0Lee6A74q8tRR6edwXgfcB/mvPh0yzgIb0ODoYmsppgA/pWiXyDxLBljmV7S7qsT3CSCoMco4g5kB5l7GMs34vllnad3+3Z6PriYw+a/4E3PghgQSKysMu3g3RtMah9ZkDkmyqFmtBtaj/54G1rk1FNHXIS9UahvB64cZxMp78XAsOiGZyZ5ETwQsCq5RECirpL+MBjIt++0GdvDYabGPSr600w0u7cetxJMuXjVXDyknbMefs0S0ouGTB66zu2v30+U2";
+        string awsAccessKeyId = "ASIA5IU4YWEJ5ZYBZDFT";
+        string awsSecretAccessKey = "OcJLhyS9UyKmSv+c01VG2tE/jjzyRHlIksXeyftc";
+        string awsSessionToken = "FwoGZXIvYXdzEL3//////////wEaDCjZfP3ZY4kheTffVSLMAZjsEpm/ZE2nBQ8bUub3EwQmPkdvxAi7GEXVEYwssSoYwG+YSDBvn9MpB5Lj68nCKCCA1/OaE7TBmZC6BhseRAViBg0Klphfn6gijIkUoQAujrmGEPJ27/iZdw3kPdmGB0BO6rfncr/9OgRJAhX5lwpKNzY5Pr0G2tYy2lrDxPRdPJwyeRLjK0fP2k+m5cREDfWuvfWDVzCdY6FqGPIvjVtiaIHNDl/OXxLVeri/nS+0gZauAe8B06lrYh0+1DIySoSL1mv/9HkqaE//3yjou8WMBjIttlkSPJbUVZnzbxw1uiwTZCKBXG19bON1ymWk83iFi7bh6fTy7TnmXz0TQuaG";
         RegionEndpoint region = RegionEndpoint.USEast1;
         string bucketName = "myaphogeschoolawss3bucket";
         [HttpPost]
-        public async Task<IActionResult> Upload(string fileName, IFormFile file)
+        public async Task<IActionResult> Upload(IFormFile file)
         {
+            string UUID = "";
             using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
             {
                 using (var newMemoryStream = new MemoryStream())
@@ -31,20 +30,33 @@ namespace Project.Controllers
                     var uploadRequest = new TransferUtilityUploadRequest
                     {
                         InputStream = newMemoryStream,
-                        Key = fileName,
+                        Key = file.FileName,
                         BucketName = bucketName,
                         CannedACL = S3CannedACL.PublicRead
                     };
+                    UUID = uploadRequest.Key;
                     var fileTransferUtility = new TransferUtility(client);
                     await fileTransferUtility.UploadAsync(uploadRequest);
                 }
             }
-            return Created("", file);
+            return Created(UUID, file);
         }
         [HttpGet]
-        public IActionResult Download(string fileName)
+        public async Task<FileResult> Download(string key)
         {
-            return Ok(fileName);
+            byte[] msByteArray;
+            string contentType;
+            using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
+            {
+                MemoryStream ms = new MemoryStream();
+                using (GetObjectResponse response = await client.GetObjectAsync(bucketName, key))
+                {
+                    response.ResponseStream.CopyTo(ms);
+                    contentType = response.Headers.ContentType.ToString();
+                }
+                msByteArray = ms.ToArray();
+            }
+            return File(msByteArray, contentType, key);
         }
     }
 }
