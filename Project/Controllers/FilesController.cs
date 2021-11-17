@@ -12,11 +12,11 @@ namespace Project.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        string awsAccessKeyId = "ASIA5IU4YWEJ5ZYBZDFT";
-        string awsSecretAccessKey = "OcJLhyS9UyKmSv+c01VG2tE/jjzyRHlIksXeyftc";
-        string awsSessionToken = "FwoGZXIvYXdzEL3//////////wEaDCjZfP3ZY4kheTffVSLMAZjsEpm/ZE2nBQ8bUub3EwQmPkdvxAi7GEXVEYwssSoYwG+YSDBvn9MpB5Lj68nCKCCA1/OaE7TBmZC6BhseRAViBg0Klphfn6gijIkUoQAujrmGEPJ27/iZdw3kPdmGB0BO6rfncr/9OgRJAhX5lwpKNzY5Pr0G2tYy2lrDxPRdPJwyeRLjK0fP2k+m5cREDfWuvfWDVzCdY6FqGPIvjVtiaIHNDl/OXxLVeri/nS+0gZauAe8B06lrYh0+1DIySoSL1mv/9HkqaE//3yjou8WMBjIttlkSPJbUVZnzbxw1uiwTZCKBXG19bON1ymWk83iFi7bh6fTy7TnmXz0TQuaG";
-        RegionEndpoint region = RegionEndpoint.USEast1;
-        string bucketName = "myaphogeschoolawss3bucket";
+        string awsAccessKeyId = AWSCredentials.awsAccessKeyId;
+        string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
+        string awsSessionToken = AWSCredentials.awsSessionToken;
+        RegionEndpoint region = AWSCredentials.region;
+        string bucketName = AWSCredentials.bucketName;
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
