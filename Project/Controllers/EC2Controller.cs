@@ -28,6 +28,8 @@ namespace Project.Controllers
         string awsSessionToken = AWSCredentials.awsSessionToken;
         RegionEndpoint region = AWSCredentials.region;
 
+
+        #region CREATE INSTANCE
         [HttpPost]
         public async Task<IActionResult> createInstance(string instanceName)
         {
@@ -59,15 +61,13 @@ namespace Project.Controllers
                     }
                 };
 
-
                 var launch = ec2.RunInstancesAsync(request);
                 RunInstancesResponse requestlaunch = await launch;
                 return Ok(requestlaunch);
             }
 
         }
+        #endregion
 
-       
     }
-
 }

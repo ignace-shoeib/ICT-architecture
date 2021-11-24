@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project.Models;
+using MySql;
+using Pomelo.EntityFrameworkCore.MySql;
+using Microsoft.EntityFrameworkCore;
 
 namespace Project
 {
@@ -26,7 +30,10 @@ namespace Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<RDSContext>(options =>
+            {
+                options.UseMySQL(Configuration.GetConnectionString("Default"));
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
