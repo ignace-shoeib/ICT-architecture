@@ -1,5 +1,6 @@
 ﻿using Amazon;
 using Amazon.CognitoIdentity;
+using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +19,15 @@ namespace Project.Controllers
         [HttpPost]
         public IActionResult CreateUser(string email, string password)
         {
-            AmazonCognitoIdentityClient client = new AmazonCognitoIdentityClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
+            AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var signUpRequest = new SignUpRequest
             {
                 ClientId = appClientID,
                 Password = password,
                 Username = email,
             };
-            return Created("", "");
+            client.SignUpAsync(signUpRequest);
+            return Created("", signUpRequest);
         }
     }
 }

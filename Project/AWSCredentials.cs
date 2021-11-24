@@ -4,9 +4,9 @@ namespace Project
 {
     public class AWSCredentials
     {
-        public static string awsAccessKeyId = "ASIA5IU4YWEJ5ZYBZDFT";
-        public static string awsSecretAccessKey = "OcJLhyS9UyKmSv+c01VG2tE/jjzyRHlIksXeyftc";
-        public static string awsSessionToken = "FwoGZXIvYXdzEL3//////////wEaDCjZfP3ZY4kheTffVSLMAZjsEpm/ZE2nBQ8bUub3EwQmPkdvxAi7GEXVEYwssSoYwG+YSDBvn9MpB5Lj68nCKCCA1/OaE7TBmZC6BhseRAViBg0Klphfn6gijIkUoQAujrmGEPJ27/iZdw3kPdmGB0BO6rfncr/9OgRJAhX5lwpKNzY5Pr0G2tYy2lrDxPRdPJwyeRLjK0fP2k+m5cREDfWuvfWDVzCdY6FqGPIvjVtiaIHNDl/OXxLVeri/nS+0gZauAe8B06lrYh0+1DIySoSL1mv/9HkqaE//3yjou8WMBjIttlkSPJbUVZnzbxw1uiwTZCKBXG19bON1ymWk83iFi7bh6fTy7TnmXz0TQuaG";
+        public static string awsAccessKeyId = "ASIA5IU4YWEJQKBKI3A2";
+        public static string awsSecretAccessKey = "kz7XTxKvL61VCgNI29WEjc8EbE7DzkmxWDAjiybd";
+        public static string awsSessionToken = "FwoGZXIvYXdzEKP//////////wEaDOkRFNipCL+JIRbsmyLMAXyXnlhea6fU+oguSNeA3Y5dZbvaQ0OTdJCAQ356YB6GVxPKXqNCgDaLAGhoJsKtHModDh3aJ32DCHWy3KNLk97XeYdMvrMWhL7hcwl5BPO7Zv4qzNnrdCy6Cd1WEqypdVY0JAuu0OIP7UePKSU92GXm4gzdNdYUsUWoNV4qhdSPkGudAjjS5lzFflMe6GQvUx/1WNzYrzXbEdXuA01TUloGi2l5oSdbazrbdQ4av/A7LiHdv7CC/Xnq94X568A1qozZjP27gLRYvpAQaCiRgfiMBjIty6uzHAMK7ON+ppSVBBHQ7esx9YLqapbE08m7Q37xduIh11znZw7KbAO8x1mh";
         public static RegionEndpoint region = RegionEndpoint.USEast1;
         public static string bucketName = "myaphogeschoolawss3bucket";
         public static string appClientID = "6ke8vkca9e4lqhc787orsiocec";
