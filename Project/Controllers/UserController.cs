@@ -3,8 +3,12 @@ using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+#region BRONNEN
 
-namespace Project.Controllers
+// CREATE USERS: https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
+
+
+#endregionnamespace Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
