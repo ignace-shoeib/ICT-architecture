@@ -2,6 +2,8 @@
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
@@ -12,19 +14,35 @@ namespace Project.Controllers
         string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
         string awsSessionToken = AWSCredentials.awsSessionToken;
         RegionEndpoint region = AWSCredentials.region;
-        string appClientID = AWSCredentials.appClientID;
+        string appClientId = AWSCredentials.appClientId;
+        string poolId = AWSCredentials.poolId;
         [HttpPost]
         public IActionResult CreateUser(string email, string password)
         {
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var signUpRequest = new SignUpRequest
             {
-                ClientId = appClientID,
+                ClientId = appClientId,
                 Password = password,
                 Username = email,
             };
             client.SignUpAsync(signUpRequest);
             return Created("", signUpRequest);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AuthenticateUser(string email, string password)
+        {
+            var authReq = new AdminInitiateAuthRequest
+            {
+                UserPoolId = poolId,
+                ClientId = appClientId,
+                AuthFlow = AuthFlowType.ADMIN_NO_SRP_AUTH
+            };
+            authReq.AuthParameters.Add("USERNAME", email);
+            authReq.AuthParameters.Add("PASSWORD", password);
+            AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
+            var authRes = await client.AdminInitiateAuthAsync(authReq);
+            return Ok(authRes);
         }
     }
 }
