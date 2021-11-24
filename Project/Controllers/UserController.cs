@@ -1,10 +1,7 @@
 ﻿using Amazon;
-using Amazon.CognitoIdentity;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
