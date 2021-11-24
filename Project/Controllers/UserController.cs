@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 
 #endregionnamespace Project.Controllers
+namespace Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
