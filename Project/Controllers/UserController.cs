@@ -4,9 +4,9 @@ using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 #region BRONNEN
-// CREATE USERS: https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
-// AUTHFLOW: https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
-// OPLOSSING authflow probleem: https://stackoverflow.com/questions/48757864/aws-cognito-user-password-auth-initiate-auth-method-not-supported
+// CREATE USERS:     https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
+// AUTHFLOW:         https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
+// AUTHFLOW FIX:     https://stackoverflow.com/questions/48757864/aws-cognito-user-password-auth-initiate-auth-method-not-supported
 #endregion
 namespace Project.Controllers
 {
