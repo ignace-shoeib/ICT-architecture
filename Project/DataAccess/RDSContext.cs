@@ -30,6 +30,8 @@ namespace Project.Models
 
         public RDSContext(DbContextOptions options) : base(options) { }
 
+        public DbSet<FileModel> Files { get; set; }
+
     }
 
 
