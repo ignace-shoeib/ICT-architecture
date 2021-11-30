@@ -6,6 +6,11 @@ using Project.Models;
 using System.Linq;
 using System.Diagnostics;
 using System;
+using Amazon;
+using Amazon.S3;
+using System.Threading.Tasks;
+using System.IO;
+using Amazon.S3.Transfer;
 
 namespace Project.Controllers
 {
@@ -16,10 +21,19 @@ namespace Project.Controllers
         // Waarschijnlijk binnenkort te verwijderen
         // Omdat dit eerder bij FilesController hoort
 
-        
+
+        #region AWS Connection
+        string awsAccessKeyId = AWSCredentials.awsAccessKeyId;
+        string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
+        string awsSessionToken = AWSCredentials.awsSessionToken;
+        RegionEndpoint region = AWSCredentials.region;
+        string bucketName = AWSCredentials.bucketName;
+        #endregion
 
         // Create Database FileDB
         // Add Table "Files" containing FileID and FileName
+
+        #region Create FileDB
         [HttpGet]
         public IActionResult CreateFileDB()
         {
@@ -64,6 +78,40 @@ namespace Project.Controllers
 
             return Ok(files);
         }
+        #endregion
 
+
+
+        #region Upload FILE + Add to database
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            string UUID = "";
+            using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
+            {
+                using (var newMemoryStream = new MemoryStream())
+                {
+                    file.CopyTo(newMemoryStream);
+
+                    var uploadRequest = new TransferUtilityUploadRequest
+                    {
+                        InputStream = newMemoryStream,
+                        Key = file.FileName,
+                        BucketName = bucketName,
+                        CannedACL = S3CannedACL.PublicRead
+                    };
+                    UUID = uploadRequest.Key;
+                    var fileTransferUtility = new TransferUtility(client);
+                    await fileTransferUtility.UploadAsync(uploadRequest);
+                }
+            }
+            return Created(UUID, file);
+        }
+
+        #endregion
     }
+
+
+
+
 }
