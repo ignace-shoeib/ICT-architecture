@@ -18,20 +18,36 @@ namespace Project.Controllers
 
         
 
+        // Create Database FileDB
+        // Add Table "Files" containing FileID and FileName
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult CreateFileDB()
         {
             MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
             conn_string.Server = "127.0.0.1";
             conn_string.UserID = "root";
-            conn_string.Password = "root";
+            conn_string.Password = "root";  // weg commenten als je XAMPP gebruikt i guess
             conn_string.Database = "test";
-            conn_string.Port = 3307; // Gewoonlijk 3306 
+            conn_string.Port = 3307;        // Verander naar 3306 als je geen gehandicapte installatie hebt zoals mij
 
             List<FileModel> files = new List<FileModel>();
             using (MySqlConnection conn = new MySqlConnection(conn_string.ToString()))
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Files", conn);
+
+                string query = @"
+                CREATE DATABASE IF NOT EXISTS `FileDB`;
+                USE `FileDB`;
+                CREATE TABLE IF NOT EXISTS `Files`
+                (
+                    FileID      INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                    FileName    VARCHAR(30) NOT NULL
+                );
+                SELECT * FROM `FileDB`.`Files`;
+
+                                ";
+                
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
