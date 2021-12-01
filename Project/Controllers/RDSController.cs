@@ -1,17 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Amazon;
+using Amazon.S3;
+using Amazon.S3.Transfer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using System.Collections.Generic;
 using Project.Models;
-using System.Linq;
-using System.Diagnostics;
 using System;
-using Amazon;
-using Amazon.S3;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.IO;
-using Amazon.S3.Transfer;
-using Amazon.RDS;
+using System.Threading.Tasks;
 
 #region BRONNEN
 // Connect MySQL Workbench with RDS: https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
@@ -64,7 +61,7 @@ namespace Project.Controllers
                 SELECT * FROM `FileDB`.`Files`;
 
                                 ";
-                
+
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader dr = cmd.ExecuteReader();

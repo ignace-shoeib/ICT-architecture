@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-//amazon services
+﻿//amazon services
 using Amazon;
 using Amazon.EC2;
 using Amazon.EC2.Model;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 #region BRONNEN
