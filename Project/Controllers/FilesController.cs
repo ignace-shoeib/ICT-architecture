@@ -17,8 +17,6 @@ namespace Project.Controllers
         string awsSessionToken = AWSCredentials.awsSessionToken;
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
-
-
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
@@ -40,7 +38,6 @@ namespace Project.Controllers
                     var fileTransferUtility = new TransferUtility(client);
                     await fileTransferUtility.UploadAsync(uploadRequest);
                 }
-
             }
             return Created(UUID, file);
         }
@@ -61,8 +58,5 @@ namespace Project.Controllers
             }
             return File(msByteArray, contentType, key);
         }
-
-
-
     }
 }

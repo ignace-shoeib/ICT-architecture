@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 #region BRONNEN
 // DBContext        https://www.youtube.com/watch?v=qkJ9keBmQWo&t
 #endregion
-
 namespace Project.Models
 {
     public class RDSContext : DbContext
@@ -25,12 +23,7 @@ namespace Project.Models
             return connectionString;
         }
         */
-
         public RDSContext(DbContextOptions options) : base(options) { }
-
         public virtual DbSet<FileModel> Files { get; set; }
-
     }
-
-
 }

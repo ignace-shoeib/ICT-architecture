@@ -1,19 +1,15 @@
-﻿//amazon services
-using Amazon;
+﻿using Amazon;
 using Amazon.EC2;
 using Amazon.EC2.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-
 #region BRONNEN
 // AmazonEC2Client:     https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/EC2/TEC2Client.html
 //                      https://s3.cn-north-1.amazonaws.com.cn/aws-dam-prod/china/pdf/aws-sdk-net-dg.pdf
 // Tags - resourcetype  https://sdk.amazonaws.com/java/api/latest/software/amazon/awssdk/services/ec2/model/ResourceType.html#INSTANCE
 // Tags                 https://stackoverflow.com/questions/30337918/example-of-programmatically-creating-restoring-an-ebs-snapshot-using-aws-sdk                     
 #endregion
-
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
@@ -24,8 +20,6 @@ namespace Project.Controllers
         string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
         string awsSessionToken = AWSCredentials.awsSessionToken;
         RegionEndpoint region = AWSCredentials.region;
-
-
         #region CREATE INSTANCE
         [HttpPost]
         public async Task<IActionResult> createInstance(string instanceName)
@@ -65,6 +59,5 @@ namespace Project.Controllers
 
         }
         #endregion
-
     }
 }
