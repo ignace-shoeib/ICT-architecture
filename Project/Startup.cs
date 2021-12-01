@@ -30,10 +30,20 @@ namespace Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<RDSContext>(options =>
             {
+                // SERVER = Endpoint
+                string server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com";
+                
+                // Databasename =
+                string databasename = "kaine-db";
+                string username = "";
+                string password = "";
+                var connectionString = @"";
                 options.UseMySQL(Configuration.GetConnectionString("Default"));
             });
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
