@@ -35,10 +35,16 @@ namespace Project
 
                 // Databasename =
                 string databasename = "kaine-db";
-                string username = "";
-                string password = "";
-                var connectionString = @"";
-                options.UseMySQL(Configuration.GetConnectionString("Default"));
+                string username = "admin";
+                string password = "rootrootroot";
+
+                var connectionString = $@"
+                    Server={server};
+                    Database={databasename};
+                    uid={username};
+                    Pwd={password}
+                ";
+                options.UseMySQL(Configuration.GetConnectionString(connectionString));
             });
 
             services.AddControllers();
