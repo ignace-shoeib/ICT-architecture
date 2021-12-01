@@ -38,11 +38,11 @@ namespace Project.Controllers
         public IActionResult CreateFileDB()
         {
             MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
-            conn_string.Server = "127.0.0.1";
-            conn_string.UserID = "root";
-            conn_string.Password = "root";  // weg commenten als je XAMPP gebruikt i guess
-            conn_string.Database = "test";
-            conn_string.Port = 3307;        // Verander naar 3306 als je geen gehandicapte installatie hebt zoals mij
+            conn_string.Server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com";
+            conn_string.UserID = "admin";
+            conn_string.Password = "rootrootroot";  // weg commenten als je XAMPP gebruikt i guess
+            conn_string.Database = "kaine-db";
+            conn_string.Port = 3306;        // Verander naar 3306 als je geen gehandicapte installatie hebt zoals mij
 
             List<FileModel> files = new List<FileModel>();
             using (MySqlConnection conn = new MySqlConnection(conn_string.ToString()))
