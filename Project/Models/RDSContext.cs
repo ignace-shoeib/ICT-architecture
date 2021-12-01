@@ -26,16 +26,9 @@ namespace Project.Models
         }
         */
 
-        public RDSContext(DbContextOptions<RDSContext> options) : base(options) { }
+        public RDSContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySQL(
-            @"Server=(localdb)\mssqllocaldb;
-            Database=PlaudertischSoftwareDatenbankCore;
-            Integrated Security=True");
-        }
-        public DbSet<FileModel> Files { get; set; }
+        public virtual DbSet<FileModel> Files { get; set; }
 
     }
 
