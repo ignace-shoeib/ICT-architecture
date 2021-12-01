@@ -1,23 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Project.Models;
-using MySql;
-using Pomelo.EntityFrameworkCore.MySql;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Net;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using Project.Models;
+using System.Collections.Generic;
+using System.Net;
 #region BRONNEN
 // TOKEN VALIDATION: https://referbruv.com/blog/posts/securing-aspnet-core-apis-with-jwt-bearer-using-aws-cognito     
 #endregion
@@ -35,12 +27,12 @@ namespace Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddDbContext<RDSContext>(options =>
             {
                 // SERVER = Endpoint
                 string server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com";
-                
+
                 // Databasename =
                 string databasename = "kaine-db";
                 string username = "";
@@ -48,7 +40,7 @@ namespace Project
                 var connectionString = @"";
                 options.UseMySQL(Configuration.GetConnectionString("Default"));
             });
-            
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

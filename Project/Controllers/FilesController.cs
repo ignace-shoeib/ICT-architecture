@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Amazon;
 using Amazon.S3;
-using System.Threading.Tasks;
-using Amazon;
-using Amazon.S3.Transfer;
-using System.IO;
 using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Threading.Tasks;
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
@@ -63,6 +63,6 @@ namespace Project.Controllers
         }
 
 
-        
+
     }
 }
