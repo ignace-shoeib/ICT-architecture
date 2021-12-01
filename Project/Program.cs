@@ -1,5 +1,8 @@
+using Amazon;
+using Amazon.RDS;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics;
 
 namespace Project
 {
@@ -8,6 +11,7 @@ namespace Project
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
