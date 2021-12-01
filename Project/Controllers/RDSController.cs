@@ -11,6 +11,11 @@ using Amazon.S3;
 using System.Threading.Tasks;
 using System.IO;
 using Amazon.S3.Transfer;
+using Amazon.RDS;
+
+#region BRONNEN
+// Connect MySQL Workbench with RDS: https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
+#endregion
 
 namespace Project.Controllers
 {
@@ -81,34 +86,56 @@ namespace Project.Controllers
         #endregion
 
 
-
         #region Upload FILE + Add to database
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
+
+
             string UUID = "";
             using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
             {
-                using (var newMemoryStream = new MemoryStream())
-                {
-                    file.CopyTo(newMemoryStream);
+                MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
+                conn_string.Server = "127.0.0.1";
+                conn_string.UserID = "root";
+                conn_string.Password = "root";  // weg commenten als je XAMPP gebruikt i guess
+                conn_string.Database = "test";
+                conn_string.Port = 3307;        // Verander naar 3306
 
-                    var uploadRequest = new TransferUtilityUploadRequest
+                using (MySqlConnection conn = new MySqlConnection(conn_string.ToString()))
+                {
+                    using (var newMemoryStream = new MemoryStream())
                     {
-                        InputStream = newMemoryStream,
-                        Key = file.FileName,
-                        BucketName = bucketName,
-                        CannedACL = S3CannedACL.PublicRead
-                    };
-                    UUID = uploadRequest.Key;
-                    var fileTransferUtility = new TransferUtility(client);
-                    await fileTransferUtility.UploadAsync(uploadRequest);
+                        file.CopyTo(newMemoryStream);
+
+                        var uploadRequest = new TransferUtilityUploadRequest
+                        {
+                            InputStream = newMemoryStream,
+                            Key = file.FileName,
+                            BucketName = bucketName,
+                            CannedACL = S3CannedACL.PublicRead
+                        };
+                        UUID = uploadRequest.Key;
+                        var fileTransferUtility = new TransferUtility(client);
+                        await fileTransferUtility.UploadAsync(uploadRequest);
+                    }
                 }
             }
             return Created(UUID, file);
         }
 
         #endregion
+
+        /*
+        [HttpGet]
+        public async Task<IActionResult> CheckConnection()
+        {
+            using (AmazonRDSClient rds = new AmazonRDSClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
+            {
+                
+            }
+        }
+        */
     }
 
 
