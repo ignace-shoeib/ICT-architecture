@@ -4,9 +4,9 @@ namespace Project
     public class AWSCredentials
     {
         // CLOUD ACCESS
-        public static string awsAccessKeyId = "ASIAXJIMXYDLSXGSDFXS";
-        public static string awsSecretAccessKey = "X0QhPmTad5yIZahGI0jyYtOCE48FKrcH7pRBct7U";
-        public static string awsSessionToken = "FwoGZXIvYXdzEFQaDDi6zLlqq0kz8dpcHCLOAfpGUaP9U7tiFBF0zSxmRPgJ0Oz8H5IvlxsENsDndGBek7JDdRGzhaoLPSRTAsT0yz4/z0TpqueSfic1qdqkCs2sGPJ2+ZbYiOJ4l8q1dsFS+ZKq0AvgCnFyKJ4TNHfbStgyuw75c9IpUF37EomddDFj+qCuhVd0FYEhftKdDfeFJWR2jmxSNXDmS1FEM021yGt1dHFksG5tILHEYCLlvjGwWxzB/mNLiZAAA3AJ48tD2/X05+GUxjV9WeS4D4PtlUb+L6w9tp8xn4Dl1329KN6Jn40GMi1afgl3IM0qIAXmNVafaIFYjWgP5CzWKjz39k56+XN2AdPYkqk7r8S6Ythr21I=";
+        public static string awsAccessKeyId = "ASIAXJIMXYDLQCWXRH6X";
+        public static string awsSecretAccessKey = "sflXr/MwnhIWC+NxanOc5sirXeQ/11Mv9MQOzj7v";
+        public static string awsSessionToken = "FwoGZXIvYXdzEMn//////////wEaDMv8HJ4mQv4Qhf7VWyLOAfzbh/eARR5eiVorfoIFqOr2FFI9Qn8maUwPANY+OKviR08PgwRLbfewSAMNkfNI1jRiE4M1iol0B2BF8r5xKdObNIBYO1Qcb5+L2BKbzdjzBIz2XBJtYq2cbiuG+HgDPcEcm5Y2E0569nii+MauMZe3IXVUioEFYCm61RtbeRMOGNcU0lHVU4hZf61DFS9497TkSTRoZHas8Cz6/NNw8Dfq6U8Qj0zJjWBK6mp6WMPz5mdxZZsL7uLbT0R2fEHweW46JL+w1lx6Z9UVs1+MKM7UuI0GMi1jv48qp6QEg5zHoEVuKGDvRFuPe59Fxv5Tb7vUYp1jGgyHo7fSn/ejbLivzyU=";
         public static RegionEndpoint region = RegionEndpoint.USEast1;
         // BUCKET ACCESS
         public static string bucketName = "testbucketkaine1";

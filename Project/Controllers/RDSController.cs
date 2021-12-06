@@ -26,9 +26,9 @@ namespace Project.Controllers
 
 
         #region AWS Connection
-        string awsAccessKeyId = AWSCredentials.awsAccessKeyId;
-        string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
-        string awsSessionToken = AWSCredentials.awsSessionToken;
+        string awsAccessKeyId = CredentialsV2.AccessKey; //AWSCredentials.awsAccessKeyId;//
+        string awsSecretAccessKey = CredentialsV2.SecretKey; //AWSCredentials.awsSecretAccessKey; //
+        string awsSessionToken = CredentialsV2.SessionToken; // AWSCredentials.awsSessionToken; //
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
         #endregion
