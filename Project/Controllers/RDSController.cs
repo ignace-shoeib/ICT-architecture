@@ -217,65 +217,7 @@ namespace Project.Controllers
 
 
 
-        // Zonder using 
-        /*
-        [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file)
-        {
-
-
-            string UUID = "";
-
-                List<FileModel> files = new List<FileModel>();
-
-                MySqlConnectionStringBuilder conn_string = new MySqlConnectionStringBuilder();
-                conn_string.Server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com";
-                conn_string.UserID = "admin";
-                conn_string.Password = "rootrootroot";
-                conn_string.Database = "kaine-db";
-                conn_string.Port = 3306;
-
-                using (AmazonRDSClient rds = new AmazonRDSClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
-                {
-
-
-
-                    using (MySqlConnection conn = new MySqlConnection(conn_string.ToString()))
-                    {
-
-                        string filename = String.Concat(Convert.ToString(file.FileName));
-
-
-
-                        var newMemoryStream = new MemoryStream();
-                        file.CopyTo(newMemoryStream);
-                        var uploadRequest = new TransferUtilityUploadRequest
-                        {
-                            InputStream = newMemoryStream,
-                            Key = file.FileName,
-                            BucketName = bucketName,
-                            CannedACL = S3CannedACL.PublicRead
-                        };
-                        UUID = uploadRequest.Key;
-
-                        string word = "test";
-                        string query = $@"
-                        INSERT INTO `FileDB.Files` (`FileName`) VALUES (@a);
-                        ";
-
-                        MySqlCommand cmd = new MySqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("a", word);
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
-
-                    }
-                }
-
-            
-            return Created(UUID, file);
-        }
-        */
+       
 
     }
 }
