@@ -2,9 +2,9 @@
 using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 namespace Project.Controllers
@@ -13,12 +13,12 @@ namespace Project.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-
         string awsAccessKeyId = CredentialsV2.AccessKey; //AWSCredentials.awsAccessKeyId;//
         string awsSecretAccessKey = CredentialsV2.SecretKey; //AWSCredentials.awsSecretAccessKey; //
         string awsSessionToken = CredentialsV2.SessionToken; // AWSCredentials.awsSessionToken; //
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {

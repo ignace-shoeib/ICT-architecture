@@ -9,9 +9,9 @@ namespace Project
         static string credentials
             =
             @"
-aws_access_key_id=ASIAXJIMXYDLQCWXRH6X
-aws_secret_access_key=sflXr/MwnhIWC+NxanOc5sirXeQ/11Mv9MQOzj7v
-aws_session_token=FwoGZXIvYXdzEMn//////////wEaDMv8HJ4mQv4Qhf7VWyLOAfzbh/eARR5eiVorfoIFqOr2FFI9Qn8maUwPANY+OKviR08PgwRLbfewSAMNkfNI1jRiE4M1iol0B2BF8r5xKdObNIBYO1Qcb5+L2BKbzdjzBIz2XBJtYq2cbiuG+HgDPcEcm5Y2E0569nii+MauMZe3IXVUioEFYCm61RtbeRMOGNcU0lHVU4hZf61DFS9497TkSTRoZHas8Cz6/NNw8Dfq6U8Qj0zJjWBK6mp6WMPz5mdxZZsL7uLbT0R2fEHweW46JL+w1lx6Z9UVs1+MKM7UuI0GMi1jv48qp6QEg5zHoEVuKGDvRFuPe59Fxv5Tb7vUYp1jGgyHo7fSn/ejbLivzyU=
+aws_access_key_id=ASIA5IU4YWEJ4E7653XG
+aws_secret_access_key=acITVjhTrt4/4+o8tmPGVmBU2mQcIdRqmGeod2Bb
+aws_session_token=FwoGZXIvYXdzEPP//////////wEaDA9XLhPF53SgJOTZLCLMAWLIAXQsoa0XeJ/9Va/kqAPnaALU1lQ3Dgkni6wKsDD/u2WOWcRfyRCRTlfU/1xMJDr4o51ZqIlLNozBuQq/rLNP1NFvbWVMLeRdeux6N0YhebOZ+wTvP5dOUFO4RioJK3GBDWGoG6wizAnBZ54A+hqFAAnblZ9+GLxFCXApNcYDddHyqjEGtX4ZZ+7rZyFjyitWcgjxz8ClkYLlq68kGcG+pl1TN45cwQXoBZ/Wyf18awvFc7CfmCCoEzlTGjUQHSMqwcSvRk/+W9Oalyio8sGNBjItBjqfFLrSfMkDeugE4GXyEJJ8lRpzPh9873JAGJt5eCCHxjlZX92gz3LV/f/X
             ";
 
 

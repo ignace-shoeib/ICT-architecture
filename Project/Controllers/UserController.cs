@@ -2,6 +2,8 @@
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 #region BRONNEN
 // CREATE USERS:     https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
@@ -46,6 +48,8 @@ namespace Project.Controllers
             authReq.AuthParameters.Add("PASSWORD", password);
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var authRes = await client.AdminInitiateAuthAsync(authReq);
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authRes.AuthenticationResult.AccessToken); ;
             return Ok(authRes);
         }
     }

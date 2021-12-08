@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -52,6 +53,11 @@ namespace Project
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Project", Version = "v1" });
             });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            });
             services.AddAuthentication().AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = GetCognitoTokenValidationParams();
@@ -81,7 +87,7 @@ namespace Project
         }
         private TokenValidationParameters GetCognitoTokenValidationParams()
         {
-            var cognitoIssuer = $"https://cognito-idp.{Configuration["region"]}.amazonaws.com/{Configuration["userPoolId"]}";
+            var cognitoIssuer = $"https://cognito-idp.us-east-1.amazonaws.com/{AWSCredentials.poolId}";
             var jwtKeySetUrl = $"{cognitoIssuer}/.well-known/jwks.json";
             var cognitoAudience = Configuration["appClientId"];
 
