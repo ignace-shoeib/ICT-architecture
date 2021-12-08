@@ -1,24 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Amazon;
 using Amazon.S3;
-using System.Threading.Tasks;
-using Amazon;
-using Amazon.S3.Transfer;
-using System.IO;
 using Amazon.S3.Model;
+using Amazon.S3.Transfer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class FilesController : ControllerBase
     {
-        string awsAccessKeyId = AWSCredentials.awsAccessKeyId;
-        string awsSecretAccessKey = AWSCredentials.awsSecretAccessKey;
-        string awsSessionToken = AWSCredentials.awsSessionToken;
+
+        string awsAccessKeyId = CredentialsV2.AccessKey; //AWSCredentials.awsAccessKeyId;//
+        string awsSecretAccessKey = CredentialsV2.SecretKey; //AWSCredentials.awsSecretAccessKey; //
+        string awsSessionToken = CredentialsV2.SessionToken; // AWSCredentials.awsSessionToken; //
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
-
-
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
@@ -40,7 +40,6 @@ namespace Project.Controllers
                     var fileTransferUtility = new TransferUtility(client);
                     await fileTransferUtility.UploadAsync(uploadRequest);
                 }
-
             }
             return Created(UUID, file);
         }
@@ -49,7 +48,7 @@ namespace Project.Controllers
         {
             byte[] msByteArray;
             string contentType;
-            using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
+            using (var client = new AmazonS3Client(CredentialsV2.AccessKey, CredentialsV2.SecretKey, CredentialsV2.SessionToken, region))
             {
                 MemoryStream ms = new MemoryStream();
                 using (GetObjectResponse response = await client.GetObjectAsync(bucketName, key))
@@ -61,8 +60,5 @@ namespace Project.Controllers
             }
             return File(msByteArray, contentType, key);
         }
-
-
-        
     }
 }

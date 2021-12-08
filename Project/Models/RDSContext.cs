@@ -1,17 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using MySql.EntityFrameworkCore;
-using System.Configuration;
-
 #region BRONNEN
 // DBContext        https://www.youtube.com/watch?v=qkJ9keBmQWo&t
 #endregion
-
 namespace Project.Models
 {
     public class RDSContext : DbContext
     {
+        /*
         public string getConnectionString()
         {
             var appConfig = ConfigurationManager.AppSettings;
@@ -27,12 +22,8 @@ namespace Project.Models
 
             return connectionString;
         }
-
+        */
         public RDSContext(DbContextOptions options) : base(options) { }
-
-        public DbSet<FileModel> Files { get; set; }
-
+        public virtual DbSet<FileModel> Files { get; set; }
     }
-
-
 }
