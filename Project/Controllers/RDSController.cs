@@ -35,12 +35,12 @@ namespace Project.Controllers
 
         // Create Database FileDB
         // Add Table "Files" containing FileID and FileName
+        //bruh fix dit
+        //[HttpPost]
+        //public async Task<IActionResult> UploadFile()
+        //{
 
-        [HttpPost]
-        public async Task<IActionResult> UploadFile()
-        {
-
-        }
+        //}
      
         
         #region Upload FILE + Add to database
