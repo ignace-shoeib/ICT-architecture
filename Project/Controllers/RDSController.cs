@@ -36,7 +36,11 @@ namespace Project.Controllers
         // Create Database FileDB
         // Add Table "Files" containing FileID and FileName
 
+        [HttpPost]
+        public async Task<IActionResult> UploadFile()
+        {
 
+        }
      
         
         #region Upload FILE + Add to database
@@ -156,6 +160,7 @@ namespace Project.Controllers
                         files.Add(file);
                     }
                     dr.Close();
+
                 }
 
                 return Ok(files);
