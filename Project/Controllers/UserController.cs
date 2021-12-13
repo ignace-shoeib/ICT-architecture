@@ -1,6 +1,7 @@
 ﻿using Amazon;
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 #region BRONNEN
@@ -46,6 +47,7 @@ namespace Project.Controllers
             authReq.AuthParameters.Add("PASSWORD", password);
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var authRes = await client.AdminInitiateAuthAsync(authReq);
+            HttpContext.Response.Cookies.Append("id_token", authRes.AuthenticationResult.IdToken, new CookieOptions { HttpOnly = true });
             return Ok(authRes.AuthenticationResult);
         }
     }
