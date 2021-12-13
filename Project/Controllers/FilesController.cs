@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading.Tasks;
 namespace Project.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class FilesController : ControllerBase
@@ -18,7 +19,6 @@ namespace Project.Controllers
         string awsSessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
