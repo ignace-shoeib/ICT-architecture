@@ -4,12 +4,12 @@ namespace Project
     public class AWSCredentials
     {
         // CLOUD ACCESS
-        public static string awsAccessKeyId = "ASIAXJIMXYDLQCWXRH6X";
-        public static string awsSecretAccessKey = "sflXr/MwnhIWC+NxanOc5sirXeQ/11Mv9MQOzj7v";
-        public static string awsSessionToken = "FwoGZXIvYXdzEMn//////////wEaDMv8HJ4mQv4Qhf7VWyLOAfzbh/eARR5eiVorfoIFqOr2FFI9Qn8maUwPANY+OKviR08PgwRLbfewSAMNkfNI1jRiE4M1iol0B2BF8r5xKdObNIBYO1Qcb5+L2BKbzdjzBIz2XBJtYq2cbiuG+HgDPcEcm5Y2E0569nii+MauMZe3IXVUioEFYCm61RtbeRMOGNcU0lHVU4hZf61DFS9497TkSTRoZHas8Cz6/NNw8Dfq6U8Qj0zJjWBK6mp6WMPz5mdxZZsL7uLbT0R2fEHweW46JL+w1lx6Z9UVs1+MKM7UuI0GMi1jv48qp6QEg5zHoEVuKGDvRFuPe59Fxv5Tb7vUYp1jGgyHo7fSn/ejbLivzyU=";
+        public static string awsAccessKeyId = "ASIA5IU4YWEJTGXKTRZA";
+        public static string awsSecretAccessKey = "UAu0KOmI5za7mMnP81n/S76zI7Lr2nSl8ekRF0HO";
+        public static string awsSessionToken = "FwoGZXIvYXdzEHEaDNsazd9kQmUnbJCngCLMAdnOb5EFD0q5Iv4slMf4VOxWPZuN/EIP0xLfVCUvG1H7cD2/xf8TVxVxyivW5jBG2d3xx8p/o2mxxgtWRzSECTiP54eoP7HcfSmQe/Fhevlum6wckhL8ohOO9PgJ/2AsgdOF1PwYjj7KeYtvFRkXm0dnkVgUl6kVb4R7tiKMz/WLN3HhEMhQsLgM/bTIEgEnlGZ82JMpUMT+SYnFWMD7hw9NWTNLqZP4SCbY1GQ6I7JEictJheEbtyIXqioW+dpT9n5zxuyLqKpF/lzSVCiN0N2NBjIt6FUyGCvojTkNH94leNk+QbCqnebjB8FOrZAo3FQcyMRoBoLnDCKi7S9xbuTD";
         public static RegionEndpoint region = RegionEndpoint.USEast1;
         // BUCKET ACCESS
-        public static string bucketName = "testbucketkaine1";
+        public static string bucketName = "myaphogeschoolawss3bucket";
         public static string appClientId = "6ke8vkca9e4lqhc787orsiocec";
         public static string poolId = "us-east-1_y1Etub0Qe";
     }

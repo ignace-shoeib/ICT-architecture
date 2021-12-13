@@ -9,10 +9,9 @@ namespace Project
         static string credentials
             =
             @"
-aws_access_key_id=ASIA5IU4YWEJ4E7653XG
-aws_secret_access_key=acITVjhTrt4/4+o8tmPGVmBU2mQcIdRqmGeod2Bb
-aws_session_token=FwoGZXIvYXdzEPP//////////wEaDA9XLhPF53SgJOTZLCLMAWLIAXQsoa0XeJ/9Va/kqAPnaALU1lQ3Dgkni6wKsDD/u2WOWcRfyRCRTlfU/1xMJDr4o51ZqIlLNozBuQq/rLNP1NFvbWVMLeRdeux6N0YhebOZ+wTvP5dOUFO4RioJK3GBDWGoG6wizAnBZ54A+hqFAAnblZ9+GLxFCXApNcYDddHyqjEGtX4ZZ+7rZyFjyitWcgjxz8ClkYLlq68kGcG+pl1TN45cwQXoBZ/Wyf18awvFc7CfmCCoEzlTGjUQHSMqwcSvRk/+W9Oalyio8sGNBjItBjqfFLrSfMkDeugE4GXyEJJ8lRpzPh9873JAGJt5eCCHxjlZX92gz3LV/f/X
-            ";
+aws_access_key_id=ASIA5IU4YWEJTGXKTRZA
+aws_secret_access_key=UAu0KOmI5za7mMnP81n/S76zI7Lr2nSl8ekRF0HO
+aws_session_token=FwoGZXIvYXdzEHEaDNsazd9kQmUnbJCngCLMAdnOb5EFD0q5Iv4slMf4VOxWPZuN/EIP0xLfVCUvG1H7cD2/xf8TVxVxyivW5jBG2d3xx8p/o2mxxgtWRzSECTiP54eoP7HcfSmQe/Fhevlum6wckhL8ohOO9PgJ/2AsgdOF1PwYjj7KeYtvFRkXm0dnkVgUl6kVb4R7tiKMz/WLN3HhEMhQsLgM/bTIEgEnlGZ82JMpUMT+SYnFWMD7hw9NWTNLqZP4SCbY1GQ6I7JEictJheEbtyIXqioW+dpT9n5zxuyLqKpF/lzSVCiN0N2NBjIt6FUyGCvojTkNH94leNk+QbCqnebjB8FOrZAo3FQcyMRoBoLnDCKi7S9xbuTD";
 
 
         // aws_access_key_id, aws_secret_access_key, aws_session_token opsplitsen

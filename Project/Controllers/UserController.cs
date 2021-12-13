@@ -2,6 +2,7 @@
 using Amazon.CognitoIdentityProvider;
 using Amazon.CognitoIdentityProvider.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -48,9 +49,7 @@ namespace Project.Controllers
             authReq.AuthParameters.Add("PASSWORD", password);
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var authRes = await client.AdminInitiateAuthAsync(authReq);
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authRes.AuthenticationResult.AccessToken); ;
-            return Ok(authRes);
+            return Ok(authRes.AuthenticationResult);
         }
     }
 }
