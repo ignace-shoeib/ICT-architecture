@@ -13,9 +13,9 @@ namespace Project.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        string awsAccessKeyId = CredentialsV2.AccessKey; //AWSCredentials.awsAccessKeyId;//
-        string awsSecretAccessKey = CredentialsV2.SecretKey; //AWSCredentials.awsSecretAccessKey; //
-        string awsSessionToken = CredentialsV2.SessionToken; // AWSCredentials.awsSessionToken; //
+        string awsAccessKeyId = AWSCredentials.AccessKey;
+        string awsSecretAccessKey = AWSCredentials.SecretKey;
+        string awsSessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
         string bucketName = AWSCredentials.bucketName;
         [Authorize]
@@ -48,7 +48,7 @@ namespace Project.Controllers
         {
             byte[] msByteArray;
             string contentType;
-            using (var client = new AmazonS3Client(CredentialsV2.AccessKey, CredentialsV2.SecretKey, CredentialsV2.SessionToken, region))
+            using (var client = new AmazonS3Client(AWSCredentials.AccessKey, AWSCredentials.SecretKey, AWSCredentials.SessionToken, region))
             {
                 MemoryStream ms = new MemoryStream();
                 using (GetObjectResponse response = await client.GetObjectAsync(bucketName, key))

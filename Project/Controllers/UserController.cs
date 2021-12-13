@@ -14,9 +14,9 @@ namespace Project.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        string awsAccessKeyId = CredentialsV2.AccessKey; //AWSCredentials.awsAccessKeyId;//
-        string awsSecretAccessKey = CredentialsV2.SecretKey; //AWSCredentials.awsSecretAccessKey; //
-        string awsSessionToken = CredentialsV2.SessionToken; // AWSCredentials.awsSessionToken; //
+        string awsAccessKeyId = AWSCredentials.AccessKey;
+        string awsSecretAccessKey = AWSCredentials.SecretKey;
+        string awsSessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
         string appClientId = AWSCredentials.appClientId;
         string poolId = AWSCredentials.poolId;
