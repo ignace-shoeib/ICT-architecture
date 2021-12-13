@@ -8,7 +8,6 @@ using MySql.Data.MySqlClient;
 using Project.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 #region BRONNEN
@@ -41,10 +40,8 @@ namespace Project.Controllers
         //{
 
         //}
-     
-        
         #region Upload FILE + Add to database
-        
+
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
@@ -99,22 +96,22 @@ namespace Project.Controllers
                         string query = $@"
                         INSERT INTO `FileDB.Files` (`FileName`) VALUES (@a);
                         ";
-                        
+
                         MySqlCommand cmd = new MySqlCommand(query, conn);
                         cmd.Parameters.AddWithValue("a", word);
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
-                       
 
 
 
-                        
+
+
 
 
                     }
                 }
-                
+
             }
             return Created(UUID, file);
         }
@@ -216,13 +213,5 @@ namespace Project.Controllers
             }
         }
         */
-
-
-
-
-
-
-       
-
     }
 }

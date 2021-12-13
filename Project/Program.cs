@@ -1,9 +1,5 @@
-using Amazon;
-using Amazon.RDS;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using System.Diagnostics;
-
 namespace Project
 {
     public class Program

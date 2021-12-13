@@ -1,15 +1,10 @@
 ﻿using Amazon;
 using Amazon.EC2;
 using Amazon.EC2.Model;
-using Amazon.EC2.Util;
 using Amazon.RDS;
-using Amazon.RDS.Model;
-using Amazon.RDS.Util;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
 namespace Project.Controllers
 {
     [Route("api/[controller]")]
@@ -39,7 +34,7 @@ namespace Project.Controllers
                     DescribeInstancesResponse response = await ec2.DescribeInstancesAsync(request);
                     foreach (Reservation reservation in response.Reservations)
                     {
-                        foreach(Instance instance in reservation.Instances)
+                        foreach (Instance instance in reservation.Instances)
                         {
                             InstanceIDs.Add(instance.InstanceId);
                             result = result + instance.InstanceId.ToString() + "\n";
@@ -54,7 +49,7 @@ namespace Project.Controllers
 
                 }
 
-                
+
 
             }
             catch (AmazonEC2Exception e)
@@ -68,10 +63,10 @@ namespace Project.Controllers
             try
             {
                 var rds = new AmazonRDSClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
-                
+
                 result = result + "[SUCCESS]: CONNECTION WITH EC2 AVAILABLE\n";
 
-               
+
 
 
             }
@@ -79,7 +74,7 @@ namespace Project.Controllers
             {
                 result = result + "[ERROR]: " + e.ToString() + "\n";
             }
-            
+
             return Ok(result);
         }
     }
