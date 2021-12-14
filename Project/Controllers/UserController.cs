@@ -19,8 +19,8 @@ namespace Project.Controllers
         string awsSecretAccessKey = AWSCredentials.SecretKey;
         string awsSessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
-        string appClientId = AWSCredentials.appClientId;
-        string poolId = AWSCredentials.poolId;
+        string appClientId = AWSCredentials.AppClientId;
+        string poolId = AWSCredentials.PoolId;
         [HttpPost]
         public IActionResult CreateUser(string email, string password)
         {

@@ -80,11 +80,11 @@ namespace Project
                             return (IEnumerable<SecurityKey>)keys;
                         },
 
-                        ValidIssuer = $"https://cognito-idp.us-east-1.amazonaws.com/{AWSCredentials.poolId}",
+                        ValidIssuer = $"https://cognito-idp.us-east-1.amazonaws.com/{AWSCredentials.PoolId}",
                         ValidateIssuerSigningKey = true,
                         ValidateIssuer = true,
                         ValidateLifetime = true,
-                        ValidAudience = AWSCredentials.appClientId,
+                        ValidAudience = AWSCredentials.AppClientId,
                         ValidateAudience = true
                     };
                 });

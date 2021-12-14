@@ -29,7 +29,7 @@ namespace Project.Controllers
         string awsSecretAccessKey = AWSCredentials.SecretKey;
         string awsSessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
-        string bucketName = AWSCredentials.bucketName;
+        string bucketName = AWSCredentials.BucketName;
         #endregion
 
         // Create Database FileDB
