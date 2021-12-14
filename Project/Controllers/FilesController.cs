@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
+using Project.Models;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -55,17 +56,17 @@ namespace Project.Controllers
             }
             using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
             {
-                using (MySqlConnection conn = new MySqlConnection(mySqlConnectionString))
+                await using (MySqlConnection conn = new MySqlConnection(mySqlConnectionString))
                 {
                     string query = @$"
                     USE `Project`;
                     INSERT INTO Files(FileName,CreationDate,UUID)
                     VALUES ('{file.FileName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{UUID}');
                     ";
-                    conn.Open();
+                    await conn.OpenAsync();
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                    await cmd.ExecuteNonQueryAsync();
+                    await conn.CloseAsync();
                 }
             }
             return Created(UUID, file);

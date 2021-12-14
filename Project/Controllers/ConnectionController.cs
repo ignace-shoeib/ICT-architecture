@@ -3,6 +3,7 @@ using Amazon.EC2;
 using Amazon.EC2.Model;
 using Amazon.RDS;
 using Microsoft.AspNetCore.Mvc;
+using Project.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace Project.Controllers

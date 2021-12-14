@@ -1,7 +1,7 @@
 ﻿using Amazon;
 using MySql.Data.MySqlClient;
 using System;
-namespace Project
+namespace Project.Models
 {
     public class AWSCredentials
     {
@@ -10,9 +10,9 @@ namespace Project
         const string credentials
             =
             @"
-aws_access_key_id=ASIA5IU4YWEJ2C4E3IR4
-aws_secret_access_key=BoPue6TgXG5I/Z0BRJWAS9DT8FEL1mdtIaAPaJYs
-aws_session_token=FwoGZXIvYXdzEIv//////////wEaDH8SdQ0B7gsJx+wMOCLMAf9sWWeFHBIqenrnRAxs05LE6ImxePUOiek+OKk49Ezj77iOqUgtL/0ATwJy7ua3KWDUNwV193M8HSALg3TVk0DsEPNwjoOEszWH3U7NEjyQw06sm2XQp0Ey5AUv1MpPrI4b7zFg6foisFjxPfZmlEn1mjUSsmo/fKT3op9dEsqUcg0BIQp5FRO1Fw42PaCW37WUaNCHIvUs+l/cFJi9wBZ4SPPPVGZt/M8UcTfsvJVkznecAWCxaZE4th9h+Ij3oT0W5rovxwx3VdJSnyj/s+ONBjItwz1wqYZ92RUm58CDGSlj1rMDnEf9srWQEda4gJyvKgEV60H8QWgerytOstqr";
+aws_access_key_id=ASIA5IU4YWEJ27534UFD
+aws_secret_access_key=jSB/Hp/jVRwrWknef4hPVA+zLmgfPmg4ciTlkrba
+aws_session_token=FwoGZXIvYXdzEIz//////////wEaDJwesNaJ+BNVQi20CSLMAReJq2jF+18eOjUKvynRXQoP5shgxu8t4em3RHUztflfBnk/jRZRC+HX6Pz0q3wEqiuD7hQ8D8l0NYdfpkko4nieHvHzwqAIDgXcWkQ6I9yPrG1LutLWBdeYIxigSg+88xVkEwnWPpG/qHOCiievyZsMSk03qzCPCJR9q49NKZTmPIjh5KmW1xX0buos2ndDkR9iBwtEknKqm8T7nIlDB/t/qAr+31jz2mW05QQ6vyWuGMAF/eALvaUoi62qXp2BaDjJSDFamapKQqHQ+CjpvuONBjItV6ivyWeYNXjha4jPfuCSPMSngqCE2JnAvA/biiJ5DT+1t+CMugjuNUFkjTuK";
         // aws_access_key_id, aws_secret_access_key, aws_session_token opsplitsen
         static string[] credentialsArray = credentials.Trim().Split(new string[] { "\n" }, StringSplitOptions.None);
         // access key
