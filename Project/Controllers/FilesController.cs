@@ -22,6 +22,7 @@ namespace Project.Controllers
         string sessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
         const string BUCKETNAME = AWSCredentials.BucketName;
+        string mySqlConnectionString = AWSCredentials.MySqlConnectionString.ToString();
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
@@ -45,7 +46,7 @@ namespace Project.Controllers
             }
             using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
             {
-                using (MySqlConnection conn = new MySqlConnection(AWSCredentials.MySqlConnectionString.ToString()))
+                using (MySqlConnection conn = new MySqlConnection(mySqlConnectionString))
                 {
                     string query = @$"
                     USE `Project`;
@@ -78,7 +79,7 @@ namespace Project.Controllers
             }
             using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
             {
-                using (MySqlConnection conn = new MySqlConnection(AWSCredentials.MySqlConnectionString.ToString()))
+                using (MySqlConnection conn = new MySqlConnection(mySqlConnectionString))
                 {
                     string query = @$"
                     USE Project;
