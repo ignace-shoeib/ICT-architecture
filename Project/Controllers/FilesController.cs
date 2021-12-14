@@ -27,6 +27,8 @@ namespace Project.Controllers
         const string BUCKETNAME = AWSCredentials.BucketName;
         string mySqlConnectionString = AWSCredentials.MySqlConnectionString.ToString();
         [HttpPost]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(201)]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             string UUID = Guid.NewGuid().ToString();
@@ -34,8 +36,11 @@ namespace Project.Controllers
             {
                 using (var newMemoryStream = new MemoryStream())
                 {
+                    if (file == null)
+                    {
+                        return BadRequest();
+                    }
                     file.CopyTo(newMemoryStream);
-
                     var uploadRequest = new TransferUtilityUploadRequest
                     {
                         InputStream = newMemoryStream,
@@ -45,6 +50,7 @@ namespace Project.Controllers
                     };
                     var fileTransferUtility = new TransferUtility(client);
                     await fileTransferUtility.UploadAsync(uploadRequest);
+                    newMemoryStream.Dispose();
                 }
             }
             using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
@@ -65,28 +71,24 @@ namespace Project.Controllers
             return Created(UUID, file);
         }
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
         public async Task<FileResult> Download(string key)
         {
-            byte[] msByteArray;
-            string contentType;
+            MemoryStream ms = new MemoryStream();
             string fileName = "";
             using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
-                MemoryStream ms = new MemoryStream();
                 try
                 {
-                    using (GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key))
-                    {
-                        response.ResponseStream.CopyTo(ms);
-                        contentType = response.Headers.ContentType.ToString();
-                    }
+                    GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key);
+                    await response.ResponseStream.CopyToAsync(ms);
                 }
                 catch (Exception)
                 {
                     Response.StatusCode = 404;
                     return File(new byte[0], "text/plain", "");
                 }
-                msByteArray = ms.ToArray();
             }
             using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
             {
@@ -108,7 +110,8 @@ namespace Project.Controllers
                     conn.Close();
                 }
             }
-            return File(msByteArray, contentType, fileName);
+            ms.Seek(0, SeekOrigin.Begin);
+            return File(ms, "application/octet-stream", fileName);
         }
     }
 }

@@ -28,25 +28,6 @@ namespace Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<RDSContext>(options =>
-            {
-                // SERVER = Endpoint
-                string server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com";
-
-                // Databasename =
-                string databasename = "kaine-db";
-                string username = "admin";
-                string password = "rootrootroot";
-
-                var connectionString = $@"
-                    Server={server};
-                    Database={databasename};
-                    uid={username};
-                    Pwd={password}
-                ";
-                options.UseMySQL(Configuration.GetConnectionString(connectionString));
-            });
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -96,7 +77,11 @@ namespace Project
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project v1"));
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Project v1");
+                    c.DefaultModelsExpandDepth(-1);
+                });
             }
             app.UseHttpsRedirection();
             app.UseAuthentication();
