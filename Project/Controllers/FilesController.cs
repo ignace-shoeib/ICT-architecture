@@ -75,49 +75,17 @@ namespace Project.Controllers
         [ProducesResponseType(404)]
         public async Task<FileResult> Download(string key)
         {
-            MemoryStream ms = new MemoryStream();
-            string fileName = "";
-            using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
-            {
-                try
-                {
-                    GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key);
-                    await response.ResponseStream.CopyToAsync(ms);
-                }
-                catch (Exception)
-                {
-                    Response.StatusCode = 404;
-                    return File(new byte[0], "text/plain", "");
-                }
-            }
-            using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
-            {
-                using (MySqlConnection conn = new MySqlConnection(mySqlConnectionString))
-                {
-                    string query = @$"
-                    USE Project;
-                    SELECT FileName FROM Files
-                    WHERE UUID = '{key}';
-                    ";
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(query, conn);
-                    MySqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        fileName = dr["FileName"].ToString();
-                    }
-                    dr.Close();
-                    conn.Close();
-                }
-            }
-            ms.Seek(0, SeekOrigin.Begin);
-            return File(ms, "application/octet-stream", fileName);
+            return await DownloadMethod(key);
         }
         [Route("{key}")]
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<FileResult> DownloadFromRoute([FromRoute] string key)
+        {
+            return await DownloadMethod(key);
+        }
+        private async Task<FileResult> DownloadMethod(string key)
         {
             MemoryStream ms = new MemoryStream();
             string fileName = "";
