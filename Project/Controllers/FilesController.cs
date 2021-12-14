@@ -10,6 +10,9 @@ using MySql.Data.MySqlClient;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+#region BRONNEN
+// Connect MySQL Workbench with RDS: https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
+#endregion
 namespace Project.Controllers
 {
     [Authorize]
