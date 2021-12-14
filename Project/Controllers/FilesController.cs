@@ -70,10 +70,18 @@ namespace Project.Controllers
             using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 MemoryStream ms = new MemoryStream();
-                using (GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key))
+                try
                 {
-                    response.ResponseStream.CopyTo(ms);
-                    contentType = response.Headers.ContentType.ToString();
+                    using (GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key))
+                    {
+                        response.ResponseStream.CopyTo(ms);
+                        contentType = response.Headers.ContentType.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    Response.StatusCode = 404;
+                    return File(new byte[0], "text/plain", "");
                 }
                 msByteArray = ms.ToArray();
             }
