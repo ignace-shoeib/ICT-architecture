@@ -10,7 +10,6 @@ using MySql.Data.MySqlClient;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-
 namespace Project.Controllers
 {
     [Authorize]
