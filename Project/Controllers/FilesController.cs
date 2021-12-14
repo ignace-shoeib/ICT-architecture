@@ -36,7 +36,7 @@ namespace Project.Controllers
                     var uploadRequest = new TransferUtilityUploadRequest
                     {
                         InputStream = newMemoryStream,
-                        Key = file.FileName,
+                        Key = UUID,
                         BucketName = BUCKETNAME,
                         CannedACL = S3CannedACL.PublicRead
                     };
@@ -66,6 +66,7 @@ namespace Project.Controllers
         {
             byte[] msByteArray;
             string contentType;
+            string fileName = "";
             using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 MemoryStream ms = new MemoryStream();
@@ -76,7 +77,27 @@ namespace Project.Controllers
                 }
                 msByteArray = ms.ToArray();
             }
-            return File(msByteArray, contentType, key);
+            using (AmazonRDSClient client = new AmazonRDSClient(accessKey, secretKey, sessionToken, region))
+            {
+                using (MySqlConnection conn = new MySqlConnection(AWSCredentials.MySqlConnectionString.ToString()))
+                {
+                    string query = @$"
+                    USE Project;
+                    SELECT FileName FROM Files
+                    WHERE UUID = '{key}';
+                    ";
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    MySqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        fileName = dr["FileName"].ToString();
+                    }
+                    dr.Close();
+                    conn.Close();
+                }
+            }
+            return File(msByteArray, contentType, fileName);
         }
     }
 }
