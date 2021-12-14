@@ -14,16 +14,16 @@ namespace Project.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        string awsAccessKeyId = AWSCredentials.AccessKey;
-        string awsSecretAccessKey = AWSCredentials.SecretKey;
-        string awsSessionToken = AWSCredentials.SessionToken;
+        string accessKey = AWSCredentials.AccessKey;
+        string secretKey = AWSCredentials.SecretKey;
+        string sessionToken = AWSCredentials.SessionToken;
         RegionEndpoint region = AWSCredentials.region;
-        string bucketName = AWSCredentials.bucketName;
+        const string BUCKETNAME = AWSCredentials.bucketName;
         [HttpPost]
         public async Task<IActionResult> Upload(IFormFile file)
         {
             string UUID = "";
-            using (var client = new AmazonS3Client(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region))
+            using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 using (var newMemoryStream = new MemoryStream())
                 {
@@ -33,7 +33,7 @@ namespace Project.Controllers
                     {
                         InputStream = newMemoryStream,
                         Key = file.FileName,
-                        BucketName = bucketName,
+                        BucketName = BUCKETNAME,
                         CannedACL = S3CannedACL.PublicRead
                     };
                     UUID = uploadRequest.Key;
@@ -48,10 +48,10 @@ namespace Project.Controllers
         {
             byte[] msByteArray;
             string contentType;
-            using (var client = new AmazonS3Client(AWSCredentials.AccessKey, AWSCredentials.SecretKey, AWSCredentials.SessionToken, region))
+            using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 MemoryStream ms = new MemoryStream();
-                using (GetObjectResponse response = await client.GetObjectAsync(bucketName, key))
+                using (GetObjectResponse response = await client.GetObjectAsync(BUCKETNAME, key))
                 {
                     response.ResponseStream.CopyTo(ms);
                     contentType = response.Headers.ContentType.ToString();

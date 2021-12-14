@@ -6,7 +6,7 @@ namespace Project
     {
         // Plak hier AWS details
         // [Default] NIET MEE KOPIEREN
-        static string credentials
+        const string credentials
             =
             @"
 aws_access_key_id=ASIA5IU4YWEJX4W32CRW
@@ -26,9 +26,9 @@ aws_session_token=FwoGZXIvYXdzEHQaDBgkKW3Foi28MvfdcyLMAT3/gq+aBewpE/3oCPqm0raTKG
         public static string SecretKey = String.Concat(Convert.ToString(secret_key[1]));
         public static string SessionToken = String.Concat(Convert.ToString(awsSessionToken[1]));
         //BUCKET ACCESS
-        public static string bucketName = "myaphogeschoolawss3bucket";
+        public const string bucketName = "myaphogeschoolawss3bucket";
         //COGNITO ACCESS
-        public static string appClientId = "6ke8vkca9e4lqhc787orsiocec";
-        public static string poolId = "us-east-1_y1Etub0Qe";
+        public const string appClientId = "6ke8vkca9e4lqhc787orsiocec";
+        public const string poolId = "us-east-1_y1Etub0Qe";
     }
 }
