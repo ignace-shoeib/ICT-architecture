@@ -10,9 +10,9 @@ namespace Project
         const string credentials
             =
             @"
-aws_access_key_id=ASIA5IU4YWEJZOGJXIPC
-aws_secret_access_key=exysSihw81frNyVHL1EUXjyHDzZMDVMNHLkUlxgY
-aws_session_token=FwoGZXIvYXdzEIf//////////wEaDOMq8MXnWzEAZZaH2yLMAWqr4vO8+u1wKjXZlyal19ZQ72rObLWHJ+biziEMCZropm3tf+EgxuGsoSYD91PItU1ACB2FwUOM/5Cw2/TMKZGmWZRVR9FYbQOfXjyf7PKJkjTnMeeKanda/xVpzcx8NAcLNW5ktjdyR4p5RjEaqCqMQiP+EClI5+GaLIq6Nmr61w5uyENhEFPqJK6KV3KWmT5D2p37TVsdpn1d1QUwShG4Y0EFgP9tEfhHsUfhC71NhNi+Ujp7MVT76sEsMiBuFJ2narOOZOGryB2bzSiEv+KNBjItlvcHtKz9lQab0SkVq7smj75CtsoO5h0WOlxrc9Mm0umvaW2Cy5J5xWqk+Ztg";
+aws_access_key_id=ASIA5IU4YWEJ2C4E3IR4
+aws_secret_access_key=BoPue6TgXG5I/Z0BRJWAS9DT8FEL1mdtIaAPaJYs
+aws_session_token=FwoGZXIvYXdzEIv//////////wEaDH8SdQ0B7gsJx+wMOCLMAf9sWWeFHBIqenrnRAxs05LE6ImxePUOiek+OKk49Ezj77iOqUgtL/0ATwJy7ua3KWDUNwV193M8HSALg3TVk0DsEPNwjoOEszWH3U7NEjyQw06sm2XQp0Ey5AUv1MpPrI4b7zFg6foisFjxPfZmlEn1mjUSsmo/fKT3op9dEsqUcg0BIQp5FRO1Fw42PaCW37WUaNCHIvUs+l/cFJi9wBZ4SPPPVGZt/M8UcTfsvJVkznecAWCxaZE4th9h+Ij3oT0W5rovxwx3VdJSnyj/s+ONBjItwz1wqYZ92RUm58CDGSlj1rMDnEf9srWQEda4gJyvKgEV60H8QWgerytOstqr";
         // aws_access_key_id, aws_secret_access_key, aws_session_token opsplitsen
         static string[] credentialsArray = credentials.Trim().Split(new string[] { "\n" }, StringSplitOptions.None);
         // access key
