@@ -9,9 +9,9 @@ namespace Project.Models
         // [Default] NIET MEE KOPIEREN
         const string credentials
             =
-            @"aws_access_key_id=ASIA5IU4YWEJ2QT2GT5Y
-aws_secret_access_key=NRDUBAHxP2P21A3M6qPqVddO8rCKAXz4uZcy7k4e
-aws_session_token=FwoGZXIvYXdzEKP//////////wEaDIjtJMO+7vzNUVpzMCLMATy8cj2hcP6dGjFM86fNUnHldTtVCuzg2GQjZG/Go1ue8QkS4JAMqQMgAjd5BpODdott5dn1mMCR9M+oI/nEJ/jrRZM+Z0sclXT6Xb7cvUgIqHS3Zsx1mdwfOaay0duhdaJTAulSOH9tngSeioxwgsR9N3VslqJUeD5nDmehBd7We2Q8LH6jd7AAyHNmxVFL5RbqGUXnFnralZNMbhcr4jVROH+trGhv4/VAW6jFaPb56RIndKAPJ0jSWE5Xpi/2GDnDrP/CDDUh8dW0XSiN2OiNBjIt2tZA4ER2V/6dYbgvVWo0n7WUZI8wzMp2wkT5uP8pFrv1Dxm3JKBE4Ir8ER1H";
+            @"aws_access_key_id=ASIA5IU4YWEJUGYBQTEN
+aws_secret_access_key=5dfYQ5VwBQQLSP86IV2BMwZX/xdnjkrM6iFPdQHg
+aws_session_token=FwoGZXIvYXdzEKf//////////wEaDKr4i3p5LjMnIhLGTiLMAbGNutqWNeolw89wt76OWf4Qo0tqtpXpouIKBrm4EBmI16dX4i8Ae4F5y9KxWCSF99aUypf3F91awr1hx9ee1VrgEZEUQ+T0nwDxxtQFe1uGB8TwvhGpGFoqOytSIyKVLFqIBUkSNC976QAzCNDHfLT9WOFLrz7FGJHnykpnL1ExIf5Yhc1mDoOkPI10eRn/wZZGUtEtXgY3ZGKYhq+bMaPNoL/PxREOmStD/oaMekcCXni4SfbiFUFnylqXO4MtbNju1nPZ6zjFPV1jcSiezOmNBjIt/QYuA/UIwWe7POl97q/UZjhJzx8G+rSbQHXp9JEleOSnUTeFq5ajCxa0jICv";
         // aws_access_key_id, aws_secret_access_key, aws_session_token opsplitsen
         static string[] credentialsArray = credentials.Trim().Split(new string[] { "\n" }, StringSplitOptions.None);
         // access key
