@@ -6,6 +6,7 @@ using Amazon.S3.Transfer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using MySql.Data.MySqlClient;
 using Project.Models;
 using System;
@@ -97,6 +98,7 @@ namespace Project.Controllers
         {
             MemoryStream ms = new MemoryStream();
             string fileName = "";
+            string checksum = "";
             using (var client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 try
@@ -116,7 +118,7 @@ namespace Project.Controllers
                 {
                     string query = @$"
                     USE Project;
-                    SELECT FileName FROM Files
+                    SELECT FileName,Checksum FROM Files
                     WHERE UUID = '{key}';
                     ";
                     conn.Open();
@@ -125,12 +127,14 @@ namespace Project.Controllers
                     while (dr.Read())
                     {
                         fileName = dr["FileName"].ToString();
+                        checksum = dr["Checksum"].ToString();
                     }
                     dr.Close();
                     conn.Close();
                 }
             }
             ms.Seek(0, SeekOrigin.Begin);
+            Response.Headers.Add("Checksum", new StringValues(checksum));
             return File(ms, "application/octet-stream", fileName);
         }
     }
