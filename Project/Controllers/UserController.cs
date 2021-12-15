@@ -22,8 +22,11 @@ namespace Project.Controllers
         RegionEndpoint region = AWSCredentials.region;
         string appClientId = AWSCredentials.AppClientId;
         string poolId = AWSCredentials.PoolId;
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        [Route("Signup")]
         [HttpPost]
-        public IActionResult CreateUser(string email, string password)
+        public async Task<IActionResult> CreateUser(string email, string password)
         {
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
             var signUpRequest = new SignUpRequest
@@ -32,10 +35,20 @@ namespace Project.Controllers
                 Password = password,
                 Username = email,
             };
-            client.SignUpAsync(signUpRequest);
+            try
+            {
+                await client.SignUpAsync(signUpRequest);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
             return Created("", signUpRequest);
         }
-        [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [Route("Signin")]
+        [HttpPost]
         public async Task<IActionResult> AuthenticateUser(string email, string password)
         {
             var authReq = new AdminInitiateAuthRequest
@@ -47,7 +60,15 @@ namespace Project.Controllers
             authReq.AuthParameters.Add("USERNAME", email);
             authReq.AuthParameters.Add("PASSWORD", password);
             AmazonCognitoIdentityProviderClient client = new AmazonCognitoIdentityProviderClient(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region);
-            var authRes = await client.AdminInitiateAuthAsync(authReq);
+            AdminInitiateAuthResponse authRes;
+            try
+            {
+                authRes = await client.AdminInitiateAuthAsync(authReq);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
             HttpContext.Response.Cookies.Append("id_token", authRes.AuthenticationResult.IdToken, new CookieOptions { HttpOnly = true });
             return Ok(authRes.AuthenticationResult);
         }

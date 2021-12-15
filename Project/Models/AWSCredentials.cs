@@ -9,9 +9,9 @@ namespace Project.Models
         // [Default] NIET MEE KOPIEREN
         const string credentials
             =
-            @"aws_access_key_id=ASIAXJIMXYDL62VFBOUX
-aws_secret_access_key=bQZhv9bYQ+lHjfexzB0vMj7ItFcY4PfVQeSfzEio
-aws_session_token=FwoGZXIvYXdzEJ7//////////wEaDHVbwZYMMFpXR/+h9yLOAeEtGlU90xfVmABqmrej8xmA6/jx/M9adk3xKCna2yfBHkom1heaIAVBSjjAkjphzttcl4ephSbt+qNzLVBySQGx+SGQ0HrqHWKOwavShBTAOsq8LITq7h+uoTZiU+3miIL+Vipv7UliRz5+ObnjCL/1Vis/tywkJFRMYnXs1CIRp0BXlphaRcAre0koGlXE+BcoFsibt+QqYBmbzV/LCIyTIOcGsr9nduoF18M9X8hCgG7CSGXN2UWHCcc15PW8GgqCSWcjgsdFzcDeIecdKL+z540GMi0nyMmMCHANoWr/pt28ZPDoVI2jqFUNYl8x7YX5JwRWczwaBSn8/P51x9o1dFM=";
+            @"aws_access_key_id=ASIA5IU4YWEJ2QT2GT5Y
+aws_secret_access_key=NRDUBAHxP2P21A3M6qPqVddO8rCKAXz4uZcy7k4e
+aws_session_token=FwoGZXIvYXdzEKP//////////wEaDIjtJMO+7vzNUVpzMCLMATy8cj2hcP6dGjFM86fNUnHldTtVCuzg2GQjZG/Go1ue8QkS4JAMqQMgAjd5BpODdott5dn1mMCR9M+oI/nEJ/jrRZM+Z0sclXT6Xb7cvUgIqHS3Zsx1mdwfOaay0duhdaJTAulSOH9tngSeioxwgsR9N3VslqJUeD5nDmehBd7We2Q8LH6jd7AAyHNmxVFL5RbqGUXnFnralZNMbhcr4jVROH+trGhv4/VAW6jFaPb56RIndKAPJ0jSWE5Xpi/2GDnDrP/CDDUh8dW0XSiN2OiNBjIt2tZA4ER2V/6dYbgvVWo0n7WUZI8wzMp2wkT5uP8pFrv1Dxm3JKBE4Ir8ER1H";
         // aws_access_key_id, aws_secret_access_key, aws_session_token opsplitsen
         static string[] credentialsArray = credentials.Trim().Split(new string[] { "\n" }, StringSplitOptions.None);
         // access key
@@ -26,14 +26,14 @@ aws_session_token=FwoGZXIvYXdzEJ7//////////wEaDHVbwZYMMFpXR/+h9yLOAeEtGlU90xfVmA
         public static string SecretKey = String.Concat(Convert.ToString(secret_key[1]));
         public static string SessionToken = String.Concat(Convert.ToString(awsSessionToken[1]));
         // BUCKET ACCESS
-        public const string BucketName = "testbucketkaine1";
+        public const string BucketName = "myaphogeschoolawss3bucket";
         // COGNITO ACCESS
-        public const string AppClientId = "5ujhaj6o5l0so8epvalius26m1";
-        public const string PoolId = "us-east-1_W33zA1Rbn";
+        public const string AppClientId = "6ke8vkca9e4lqhc787orsiocec";
+        public const string PoolId = "us-east-1_y1Etub0Qe";
         // DATABASE ACCESS
         public static MySqlConnectionStringBuilder MySqlConnectionString = new MySqlConnectionStringBuilder()
         {
-            Server = "kaine-db.cqftybxhj9nh.us-east-1.rds.amazonaws.com",
+            Server = "project-db.cd4zrs9jaq6a.us-east-1.rds.amazonaws.com",
             UserID = "admin",
             Password = "rootrootroot",
             Database = "Project",
