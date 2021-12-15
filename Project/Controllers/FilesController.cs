@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using Project.Models;
 using System;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 #region BRONNEN
 // Connect MySQL Workbench with RDS: https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
@@ -33,6 +34,7 @@ namespace Project.Controllers
         public async Task<IActionResult> Upload(IFormFile file)
         {
             string UUID = Guid.NewGuid().ToString();
+            string checksum = "";
             using (AmazonS3Client client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 using (var newMemoryStream = new MemoryStream())
@@ -42,6 +44,11 @@ namespace Project.Controllers
                         return BadRequest();
                     }
                     file.CopyTo(newMemoryStream);
+                    using (var md5 = MD5.Create())
+                    {
+                        var hash = md5.ComputeHash(file.OpenReadStream());
+                        checksum = BitConverter.ToString(hash).Replace("-", "");
+                    }
                     var uploadRequest = new TransferUtilityUploadRequest
                     {
                         InputStream = newMemoryStream,
@@ -60,8 +67,8 @@ namespace Project.Controllers
                 {
                     string query = @$"
                     USE `Project`;
-                    INSERT INTO Files(FileName,CreationDate,UUID)
-                    VALUES ('{file.FileName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{UUID}');
+                    INSERT INTO Files(FileName,CreationDate,UUID,Checksum)
+                    VALUES ('{file.FileName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{UUID}','{checksum}');
                     ";
                     await conn.OpenAsync();
                     MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -69,7 +76,7 @@ namespace Project.Controllers
                     await conn.CloseAsync();
                 }
             }
-            return Created(UUID, file);
+            return Created("", "{\n  \"UUID\": \"" + UUID + "\",\n  \"Checksum\": \"" + checksum + "\"\n}");
         }
         [HttpGet]
         [ProducesResponseType(200)]
