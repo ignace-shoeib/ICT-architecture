@@ -11,7 +11,8 @@ namespace Project
         }
         public static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
         {
-            webBuilder.UseUrls("https://localhost:443;http://localhost:80");
+            webBuilder.UseKestrel();
+            webBuilder.UseUrls("http://*:80");
             webBuilder.UseContentRoot(Directory.GetCurrentDirectory());
             webBuilder.UseIISIntegration();
             webBuilder.UseStartup<Startup>();
