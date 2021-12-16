@@ -35,7 +35,6 @@ namespace Project.Controllers
         public async Task<IActionResult> Upload(IFormFile file)
         {
             string UUID = Guid.NewGuid().ToString();
-            string checksum = "";
             using (AmazonS3Client client = new AmazonS3Client(accessKey, secretKey, sessionToken, region))
             {
                 using (var newMemoryStream = new MemoryStream())
@@ -45,11 +44,6 @@ namespace Project.Controllers
                         return BadRequest();
                     }
                     file.CopyTo(newMemoryStream);
-                    using (var md5 = MD5.Create())
-                    {
-                        var hash = md5.ComputeHash(file.OpenReadStream());
-                        checksum = BitConverter.ToString(hash).Replace("-", "");
-                    }
                     var uploadRequest = new TransferUtilityUploadRequest
                     {
                         InputStream = newMemoryStream,
@@ -68,8 +62,8 @@ namespace Project.Controllers
                 {
                     string query = @$"
                     USE `Project`;
-                    INSERT INTO Files(FileName,CreationDate,UUID,Checksum)
-                    VALUES ('{file.FileName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{UUID}','{checksum}');
+                    INSERT INTO Files(FileName,CreationDate,UUID)
+                    VALUES ('{file.FileName}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}','{UUID}');
                     ";
                     await conn.OpenAsync();
                     MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -77,7 +71,7 @@ namespace Project.Controllers
                     await conn.CloseAsync();
                 }
             }
-            return Created("", "{\n  \"UUID\": \"" + UUID + "\",\n  \"Checksum\": \"" + checksum + "\"\n}");
+            return Created("", "{\n  \"UUID\": \"" + UUID + "\"\n}");
         }
         [HttpGet]
         [ProducesResponseType(200)]
