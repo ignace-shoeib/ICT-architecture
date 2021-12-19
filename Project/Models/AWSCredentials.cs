@@ -1,6 +1,10 @@
 ﻿using Amazon;
 using MySql.Data.MySqlClient;
 using System;
+#region BRONNEN
+// https://stackoverflow.com/questions/13461150/c-sharp-split-string-after-each-symbol
+// https://docs.microsoft.com/en-us/dotnet/api/system.string.split?view=net-6.0
+#endregion
 namespace Project.Models
 {
     public class AWSCredentials

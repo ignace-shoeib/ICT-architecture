@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 // CREATE USERS:     https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
 // AUTHFLOW:         https://aws.amazon.com/blogs/mobile/use-csharp-to-register-and-authenticate-with-amazon-cognito-user-pools/
 // AUTHFLOW FIX:     https://stackoverflow.com/questions/48757864/aws-cognito-user-password-auth-initiate-auth-method-not-supported
+// https://docs.microsoft.com/en-us/aspnet/core/web-api/action-return-types?view=aspnetcore-6.0
+// https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/cognito-creds-provider.html
 #endregion
 namespace Project.Controllers
 {

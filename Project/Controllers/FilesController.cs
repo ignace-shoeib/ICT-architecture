@@ -14,7 +14,11 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 #region BRONNEN
-// Connect MySQL Workbench with RDS: https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
+// Connect MySQL Workbench with RDS:    https://stackoverflow.com/questions/16488135/unable-to-connect-mysql-workbench-to-rds-instance
+// Files                                https://stackoverflow.com/questions/1690337/what-is-the-best-practice-for-storing-a-file-upload-to-a-memorystream-c
+//                                      https://stackoverflow.com/questions/19187964/how-to-upload-memory-file-to-amazon-s3
+// RDS - SQL                            https://www.w3schools.com/sql/sql_insert.asp
+// 
 #endregion
 namespace Project.Controllers
 {

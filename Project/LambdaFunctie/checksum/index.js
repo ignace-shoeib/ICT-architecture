@@ -1,3 +1,9 @@
+/*
+BRONNEN:
+https://stackoverflow.com/questions/60367733/basic-js-question-about-aws-lambda-rds-dynamodb-query-in-the-same-function
+https://www.w3schools.com/sql/sql_update.asp
+*/
+
 console.log('Loading function');
 const aws = require('aws-sdk');
 const s3 = new aws.S3({ apiVersion: '2006-03-01' });

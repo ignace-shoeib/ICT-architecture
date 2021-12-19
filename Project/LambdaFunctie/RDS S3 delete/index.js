@@ -1,3 +1,9 @@
+/*
+BRONNEN:
+https://stackoverflow.com/questions/3433465/mysql-delete-all-rows-older-than-10-minutes
+
+*/
+
 console.log('Loading function');
 const aws = require('aws-sdk');
 const s3 = new aws.S3({ apiVersion: '2006-03-01' });
